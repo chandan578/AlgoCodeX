@@ -45,7 +45,9 @@ vector<vector<int>> subsets(vector<int>& nums){
     for(int i=0; i<(1<<nums.size()); i++){
         vector<int> curr ;
         for(int j=0; j<nums.size(); j++){
-            if((i>>j) & 1) curr.push_back(nums[j]);
+            // if((i>>j) & 1) // This is also correct
+            if(i & (1<<j))
+             curr.push_back(nums[j]);
         }
 
         ans.push_back(curr);
@@ -55,7 +57,7 @@ vector<vector<int>> subsets(vector<int>& nums){
 }
 
 int main(){
-    vector<int> nums = {10, 20, 30, 40};
+    vector<int> nums = {10, 20, 30};
 
     vector<vector<int>> ans = subsets(nums);
 
